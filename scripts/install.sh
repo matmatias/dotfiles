@@ -5,7 +5,7 @@ INSTALL_COMMAND="install"
 
 sudo apt update
 echo "Installing packages..."
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND git curl stow xclip tmux
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND git curl stow xclip tmux ripgrep
 echo "Packages installed!"
 
 echo "Installing asdf"
