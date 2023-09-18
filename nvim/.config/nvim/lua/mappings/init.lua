@@ -5,12 +5,12 @@ local wk = require("which-key")
 vim.g.mapleader = ' '
 
 wk.register({
-  -- lsp actions
   w = { "<cmd>w<cr>", "Save File" },
   q = { "<cmd>quitall<cr>", "Quit Neovim"},
   r = { "<cmd>luafile %<cr>", "Reload File"},
   h = { "<cmd>noh<cr>", "Remove search highlight"},
   e = { "<cmd>NvimTreeToggle<cr>", "Open File Tree"},
+  -- Non-Attached LSP keymappings
   L = {
     name = "+LSP Actions",
     D = { vim.diagnostic.open_float, "Show diagnostic" },
