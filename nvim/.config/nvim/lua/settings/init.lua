@@ -27,3 +27,6 @@ set.relativenumber = true
 set.number = true
 set.cursorline = false
 set.hidden = true
+set.swapfile = false
+
+-- set.colorscheme = "gruvbox-material"

@@ -1,7 +1,7 @@
-require('plugins')
-
 require('settings')
--- require('mappings')
+require('plugins')
+require('mappings')
+
 -- require('colorschemes.gruvbox')
 -- require('nvim-tree-config')
 -- require('autopairs')
