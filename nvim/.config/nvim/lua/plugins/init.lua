@@ -126,139 +126,16 @@ require("lazy").setup({
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { "neovim/nvim-lspconfig", "williamboman/mason.nvim" },
-    config = function()
-      -- local lspconfig = require("lspconfig")
-
-      require("mason-lspconfig").setup({
-        automatic_installation = true,
-        ensure_installed = {
-          "angularls",
-          "bashls",
-          "clangd",
-          "cmake",
-          "cssmodules_ls",
-          "cssls",
-          "dockerls",
-          "docker_compose_language_service",
-          "eslint",
-          "html",
-          "jsonls",
-          "tsserver",
-          "ltex",
-          "lua_ls",
-          "marksman",
-          "pyright",
-          "sqlls",
-          "rust_analyzer",
-          "tailwindcss",
-          "yamlls"
-        },
-      })
-
-      local function on_attach(_, __)
-        local wk = require("which-key")
-        -- Attached LSP keymappings
-        local keymappings = {
-          D = { vim.lsp.buf.declaration, "Jump to declaration" },
-          d = { vim.lsp.buf.definition, "Jump to definition" },
-          h = { vim.lsp.buf.hover, "Display information"},
-          i = { vim.lsp.buf.implementation, "List all implementations" },
-          s = { vim.lsp.buf.signature_help, "Display signature information" },
-          t = { vim.lsp.buf.type_definition, "Jump to type definition" },
-          r = { vim.lsp.buf.rename, "Rename" } ,
-          f = { vim.lsp.buf.formatting, "Format File" },
-          a = { vim.lsp.buf.code_action, "Code Action"}
-        }
-        local prefix = { prefix = "<leader>L" }
-        wk.register(keymappings, prefix)
-      end
-
-      require("mason-lspconfig").setup_handlers({
-        function (server_name)
-          require("lspconfig")[server_name].setup({
-            on_attach = on_attach
-          })
-        end,
-        ["lua_ls"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.lua_ls.setup({
-            on_attach = on_attach,
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { "vim" }
-                }
-              }
-            }
-          })
-        end
-    })
-    end
-  },
-  {
-    "hrsh7th/nvim-cmp",
     dependencies = {
+      "neovim/nvim-lspconfig",
+      "williamboman/mason.nvim",
+      "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-vsnip",
       "hrsh7th/vim-vsnip"
     },
     config = function()
-      local cmp = require("cmp")
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-          end,
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered()
-        },
-        mapping = cmp.mapping.preset.insert({
-          ['<C-k>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-j>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ['<Tab>'] = function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              fallback()
-            end
-          end,
-          ['<S-Tab>'] = function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            else
-              fallback()
-            end
-          end
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "vsnip" }
-        }, {
-          { name = "buffer" },
-        })
-      })
-
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" }
-        }, {
-          { name = "cmdline" }
-        })
-      })
-
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require("lspconfig")
-
-      lspconfig["lua_ls"].setup({
-        capabilities = capabilities
-      })
+     require("lsp").setup()
     end
   },
   {
