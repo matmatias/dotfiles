@@ -11,6 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local settings = {
+  lockfile = os.getenv("HOME") .. "/.dotfiles/nvim/.config/nvim/lazy-lock.json"
+}
+
 require("lazy").setup({
 	{
 		"sainnhe/gruvbox-material",
@@ -158,4 +162,4 @@ require("lazy").setup({
 			require("diffview").setup()
 		end,
 	},
-})
+}, settings)
