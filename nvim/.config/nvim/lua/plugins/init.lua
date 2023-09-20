@@ -165,4 +165,15 @@ require("lazy").setup({
 			require("diffview").setup()
 		end,
 	},
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup({
+				mappings = {
+					basic = true,
+					extra = true,
+				},
+			})
+		end,
+	},
 }, settings)
