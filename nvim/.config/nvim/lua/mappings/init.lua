@@ -17,19 +17,19 @@ wk.register({
 		["<S-Tab>"] = { vim.diagnostic.goto_prev, "Move to prev diagnostic" },
 		["<Tab>"] = { vim.diagnostic.goto_next, "Move to next diagnostic" },
 		["i"] = { "<cmd>LspInfo<cr>", "Lsp Information" },
+		f = { "<cmd>Format<cr>", "Format" },
 	},
 	-- Plugins
 	P = {
 		name = "+Plugins",
-    r = { "<cmd>Lazy reload<cr>", "Reload" },
-    R = { "<cmd>Lazy restore<cr>", "Restore" },
-		s = { "<cmd>Lazy rync<cr>", "Sync" },
+		r = { "<cmd>Lazy reload<cr>", "Reload" },
+		R = { "<cmd>Lazy restore<cr>", "Restore" },
+		s = { "<cmd>Lazy sync<cr>", "Sync" },
 		i = { "<cmd>Lazy install<cr>", "Install" },
 		U = { "<cmd>Lazy update<cr>", "Update" },
-    c = { "<cmd>Lazy Health<cr>", "Check Health"},
-    h = { "<cmd>Lazy help<cr>", "Help" },
-    l = { "<cmd>Lazy home<cr>", "List Plugins" },
-
+		c = { "<cmd>Lazy Health<cr>", "Check Health" },
+		h = { "<cmd>Lazy help<cr>", "Help" },
+		l = { "<cmd>Lazy home<cr>", "List Plugins" },
 	},
 	-- Find (telescope)
 	f = { "<cmd>Telescope find_files<cr>", "Search File" },
@@ -44,7 +44,6 @@ wk.register({
 		c = { "<cmd>DiffviewClose<cr>", "Close Diff View" },
 		h = { "<cmd>DiffviewFileHistory<cr>", "File History View" },
 	},
-	F = { "<cmd>Format<cr>", "Format" },
 }, { prefix = "<leader>" })
 
 -- identation
