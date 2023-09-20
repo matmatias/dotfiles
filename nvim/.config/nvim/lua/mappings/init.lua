@@ -19,12 +19,17 @@ wk.register({
 		["i"] = { "<cmd>LspInfo<cr>", "Lsp Information" },
 	},
 	-- Plugins
-	p = {
+	P = {
 		name = "+Plugins",
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
-		["S"] = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUninstall<cr>", "Uninstall" },
+    r = { "<cmd>Lazy reload<cr>", "Reload" },
+    R = { "<cmd>Lazy restore<cr>", "Restore" },
+		s = { "<cmd>Lazy rync<cr>", "Sync" },
+		i = { "<cmd>Lazy install<cr>", "Install" },
+		U = { "<cmd>Lazy update<cr>", "Update" },
+    c = { "<cmd>Lazy Health<cr>", "Check Health"},
+    h = { "<cmd>Lazy help<cr>", "Help" },
+    l = { "<cmd>Lazy home<cr>", "List Plugins" },
+
 	},
 	-- Find (telescope)
 	f = { "<cmd>Telescope find_files<cr>", "Search File" },
