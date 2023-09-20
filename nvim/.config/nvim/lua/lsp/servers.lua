@@ -18,7 +18,7 @@ local servers = {
   "sqlls",
   "rust_analyzer",
   "tailwindcss",
-  "yamlls"
+  "yamlls",
 }
 
 return servers
