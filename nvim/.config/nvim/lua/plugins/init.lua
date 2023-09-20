@@ -155,7 +155,7 @@ require("lazy").setup({
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
-      require("diffview").setup()
-    end,
+			require("diffview").setup()
+		end,
 	},
 })

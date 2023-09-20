@@ -33,13 +33,13 @@ wk.register({
 		t = { "<cmd>Telescope live_grep<cr>", "Text" },
 		b = { "<cmd>Telescope buffers<cr>", "Buffers" },
 	},
-  G = {
-    name = "+Git",
-    d = { "<cmd>DiffviewOpen<cr>", "Diff View" },
-    c = { "<cmd>DiffviewClose<cr>", "Close Diff View" },
-    h = { "<cmd>DiffviewFileHistory<cr>", "File History View" }
-  },
-  F = { "<cmd>Format<cr>", "Format" }
+	G = {
+		name = "+Git",
+		d = { "<cmd>DiffviewOpen<cr>", "Diff View" },
+		c = { "<cmd>DiffviewClose<cr>", "Close Diff View" },
+		h = { "<cmd>DiffviewFileHistory<cr>", "File History View" },
+	},
+	F = { "<cmd>Format<cr>", "Format" },
 }, { prefix = "<leader>" })
 
 -- identation

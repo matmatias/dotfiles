@@ -77,7 +77,7 @@ function lsp.setup()
 		end,
 	})
 
-  -- Formatters setup
+	-- Formatters setup
 	local formatters = require("lsp.formatters")
 	require("mason-tool-installer").setup({
 		ensure_installed = formatters,
