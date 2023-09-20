@@ -1,6 +1,7 @@
 local formatters = {
   "stylua",
-  "prettier"
+  "prettier",
+  "clang-format"
 }
 
 return formatters
