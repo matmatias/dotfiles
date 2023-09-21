@@ -26,6 +26,8 @@ require("lazy").setup({
 		"kyazdani42/nvim-tree.lua",
 		config = function()
 			require("nvim-tree").setup({
+				hijack_cursor = true,
+				disable_netrw = false,
 				filters = {
 					dotfiles = false,
 				},
@@ -33,6 +35,9 @@ require("lazy").setup({
 					open_file = {
 						quit_on_open = true,
 					},
+				},
+				renderer = {
+					indent_markers = { enable = true },
 				},
 			})
 		end,
