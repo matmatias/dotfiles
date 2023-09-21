@@ -20,7 +20,7 @@
 ### Neovim
   To setup neovim, run:
   ```bash
-  neovim
+  nvim
   ```
   Wait for all plugins to be installed, then quit it. Now it is configured and ready for use.
   
