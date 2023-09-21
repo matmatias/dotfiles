@@ -11,7 +11,7 @@ wk.register({
 	h = { "<cmd>noh<cr>", "Remove search highlight" },
 	e = { "<cmd>NvimTreeToggle<cr>", "Open File Tree" },
 	-- Non-Attached LSP keymappings
-	L = {
+	l = {
 		name = "+LSP Actions",
 		D = { vim.diagnostic.open_float, "Show diagnostic" },
 		["<S-Tab>"] = { vim.diagnostic.goto_prev, "Move to prev diagnostic" },
@@ -32,9 +32,9 @@ wk.register({
 		l = { "<cmd>Lazy home<cr>", "List Plugins" },
 	},
 	-- Find (telescope)
-	f = { "<cmd>Telescope find_files<cr>", "Search File" },
-	s = {
-		name = "+Search",
+	f = {
+		name = "+Find",
+		f = { "<cmd>Telescope find_files<cr>", "File" },
 		t = { "<cmd>Telescope live_grep<cr>", "Text" },
 		b = { "<cmd>Telescope buffers<cr>", "Buffers" },
 	},
