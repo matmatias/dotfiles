@@ -7,7 +7,7 @@ UPDATE_COMMAND="update"
 mv $HOME/.bashrc $HOME/.bashrc.bak
 echo "INSTALLING PACKAGES..."
 sudo $PACKAGE_MANAGER $UPDATE_COMMAND
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip gzip dialog apt-utils build-essential stow
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip gzip dialog apt-utils build-essential stow cmake
 echo "PACKAGES INSTALLED!"
 
 echo "INSTALLING CASKAYDIACOVE NERD FONT"
