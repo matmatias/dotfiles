@@ -5,14 +5,14 @@
   - .bashrc
   - asdf
   - nvim
-  - install.sh: this script installs and setup bash, cmake, gcc, asdf, rust, bob (nvim version manager), nvim and all the dependencies needed to make everything work out of the box.
+  - install.sh: this script installs and setup bash, cmake, gcc, asdf, rust, python, nodejs, bob (nvim version manager), nvim and all the dependencies needed to make everything work out of the box.
 
 ## Setup
   To set everything up, run:
   ```bash
   git clone git@github.com:MatMatias/dotfiles $HOME/.dotfiles
   cd $HOME/.dotfiles
-  sudo chmod 755 ./scripts/install.sh
+  sudo chmod 755 ./scripts/install.sh && sudo chown \[YOUR_USER\] ./nvim
   ./scripts/install.sh
   ```
   Then restart your bash session.
@@ -36,7 +36,17 @@ docker build -t fresh_debian .
 Then use the new fresh debian to test the scripts:
 ```bash
 docker run -d --name fresh_debian -d fresh_debian
-sudo docker exec -it fresh_debian /bin/bash
+docker exec -it fresh_debian /bin/bash
+```
+
+To stop the container, run:
+```bash
+docker stop fresh_debian
+```
+
+To delete the container, run:
+```bash
+docker rm fresh_debian
 ```
 
 ## Help
