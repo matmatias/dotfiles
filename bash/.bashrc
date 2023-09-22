@@ -125,5 +125,5 @@ alias vim=nvim
 export PATH=$PATH:$HOME/.asdf/installs/rust/stable/bin
 # Nvim
 export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
-# Formatters / LSPs
+# Formatters / LSPs / Debuggers
 export PATH=$PATH:$HOME/.local/share/nvim/mason/bin

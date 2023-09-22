@@ -7,12 +7,14 @@ UPDATE_COMMAND="update"
 mv $HOME/.bashrc $HOME/.bashrc.bak
 echo "INSTALLING PACKAGES..."
 sudo $PACKAGE_MANAGER $UPDATE_COMMAND
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip gzip dialog apt-utils build-essential stow cmake
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip gzip fontconfig dialog apt-utils build-essential stow cmake
+# Python dependencies
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 echo "PACKAGES INSTALLED!"
 
 echo "INSTALLING CASKAYDIACOVE NERD FONT"
 sudo wget -O /usr/share/fonts/cascadiacode.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.zip
-mkdir /usr/share/fonts/cascadiacode && unzip /usr/share/fonts/cascadiacode.zip -d /usr/share/fonts/cascadiacode
+sudo mkdir /usr/share/fonts/cascadiacode && sudo unzip /usr/share/fonts/cascadiacode.zip -d /usr/share/fonts/cascadiacode
 fc-cache -f -v
 echo "FONT INSTALLED!"
 
@@ -20,12 +22,25 @@ echo "INSTALLING ASDF"
 git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.13.1
 echo "ASDF INSTALLED!"
 
+export PATH=$PATH:$HOME/.asdf/bin
+asdf plugin-add rust https://github.com/code-lever/asdf-rust.git
+asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin-add python
+
 echo "INSTALLING RUST STABLE"
-ASDF_PATH="$HOME/.asdf/bin"
-"$ASDF_PATH/asdf" plugin-add rust https://github.com/code-lever/asdf-rust.git
-"$ASDF_PATH/asdf" install rust stable
-"$ASDF_PATH/asdf" global rust stable
+asdf install rust stable
+asdf global rust stable
 echo "RUST INSTALLED!"
+
+echo "INSTALLING PYTHON"
+asdf install python 3.10.13
+asdf global python 3.10.13
+echo "PYTHON INSTALLED!"
+
+echo "INSTALLING NODE v18.17.1"
+asdf install nodejs 18.17.1
+asdf global nodejs 18.17.1
+echo "NODE INSTALLED!"
 
 echo "INSTALLING BOB (NVIM VERSION MANAGER)"
 CARGO_PATH="$HOME/.asdf/shims"
