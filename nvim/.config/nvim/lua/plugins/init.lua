@@ -145,6 +145,14 @@ require("lazy").setup({
 			-- Formatters
 			"mhartington/formatter.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			-- Debuggers
+			"mfussenegger/nvim-dap",
+			"jay-babu/mason-nvim-dap.nvim",
+      -- Debugger UI
+      "rcarriga/nvim-dap-ui",
+      "folke/neodev.nvim",
+			-- Debugger cfg per project
+			"ldelossa/nvim-dap-projects",
 		},
 		config = function()
 			require("lsp").setup()
