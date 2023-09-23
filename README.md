@@ -12,7 +12,7 @@
   ```bash
   git clone git@github.com:MatMatias/dotfiles $HOME/.dotfiles
   cd $HOME/.dotfiles
-  sudo chmod 755 ./scripts/install.sh && sudo chown \[YOUR_USER\] ./nvim
+  sudo chmod 755 ./scripts/install.sh && sudo chown $USER ./nvim
   ./scripts/install.sh
   ```
   Then restart your bash session.
