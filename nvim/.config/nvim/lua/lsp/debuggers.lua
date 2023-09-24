@@ -5,12 +5,12 @@ local debuggers = {
 	"python", -- debugpy
 	"bash", -- bash-debug-adapter
 
+	-- "codelldb", = 'codelldb',
 	-- 'delve' = 'delve',
 	-- 'chrome' = 'chrome-debug-adapter',
 	-- 'firefox' = 'firefox-debug-adapter',
 	-- 'php' = 'php-debug-adapter',
 	-- 'coreclr' = 'netcoredbg',
-	-- 'codelldb' = 'codelldb',
 	-- 'javadbg' = 'java-debug-adapter',
 	-- 'javatest' = 'java-test',
 	-- 'mock' = 'mockdebug',

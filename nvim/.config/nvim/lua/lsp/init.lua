@@ -110,58 +110,20 @@ function lsp.setup()
 	dap_per_project.config_paths = debug_files
 	dap_per_project.search_project_config()
 
-  -- debuf_file example:
-  -- local dap = require("dap")
-  -- dap.adapters.lib = {
-    -- type = "executable"
-    -- command = "dap_binary",
-    -- name = "dap_name"
-  -- }
-  --
-  -- dap.configurations.c = {
-    -- name = "file_name",
-    -- type = "dap_name",
-    -- request = "launch",
-    -- program = "file_name",
-    -- cwd = "${workspaceFolder}",
-    -- stopOnEntry = false,
-    -- args = {argv}
-  -- },
-  -- dap.configurations.c = {
-    -- name = "file_name_2",
-    -- type = "dap_name",
-    -- request = "launch",
-    -- program = "file_name_2",
-    -- cwd = "${workspaceFolder}",
-    -- stopOnEntry = false,
-    -- args = {argv}
-  -- }
-
 	-- Debugger UI
+	local dap = require("dap")
+	-- C/C++/Rust
+	dap.adapters.cpptools = {
+    id = "cpptools",
+    type = "executable",
+    command = "OpenDebugAD7",
+	}
+	-- For more dap installs, check https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
+
 	require("neodev").setup({
 		library = { plugins = { "nvim-dap-ui" }, types = true },
 	})
 	require("dapui").setup()
-
-	local dap = require("dap")
-	-- C/C++/Rust
-	dap.adapters.cppdbg = {
-		id = "cppdbg",
-		type = "executable",
-		command = "OpenDebugAD7",
-	}
-	-- For more dap installs, check https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
-
-	local dapui = require("dapui")
-	dap.listeners.after.event_initialized["dapui_config"] = function()
-		dapui.open({})
-	end
-	dap.listeners.before.event_terminated["dapui_config"] = function()
-		dapui.close({})
-	end
-	dap.listeners.before.event_exited["dapui_config"] = function()
-		dapui.close({})
-	end
 end
 
 return lsp

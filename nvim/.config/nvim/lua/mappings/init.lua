@@ -4,6 +4,14 @@ local wk = require("which-key")
 
 vim.g.mapleader = " "
 
+local function toggle_debugger()
+	require("dapui").toggle()
+end
+
+local function close_debugger()
+	require("dapui").close()
+end
+
 wk.register({
 	w = { "<cmd>w<cr>", "Save File" },
 	q = { "<cmd>quitall<cr>", "Quit Neovim" },
@@ -18,6 +26,13 @@ wk.register({
 		["<Tab>"] = { vim.diagnostic.goto_next, "Move to next diagnostic" },
 		["i"] = { "<cmd>LspInfo<cr>", "Lsp Information" },
 		f = { "<cmd>Format<cr>", "Format" },
+	},
+	-- Debugger
+	D = {
+		name = "+Debugger",
+		t = { toggle_debugger, "Toggle" },
+		b = { "<cmd>DapToggleBreakpoint<cr>", "Set Breakpoint" },
+		c = { close_debugger, "Close" },
 	},
 	-- Plugins
 	P = {
