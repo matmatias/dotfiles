@@ -21,10 +21,7 @@ wk.register({
 	-- Non-Attached LSP keymappings
 	l = {
 		name = "+LSP Actions",
-		D = { vim.diagnostic.open_float, "Show diagnostic" },
-		["<S-Tab>"] = { vim.diagnostic.goto_prev, "Move to prev diagnostic" },
-		["<Tab>"] = { vim.diagnostic.goto_next, "Move to next diagnostic" },
-		["i"] = { "<cmd>LspInfo<cr>", "Lsp Information" },
+		I = { "<cmd>LspInfo<cr>", "Lsp Information" },
 		f = { "<cmd>Format<cr>", "Format" },
 	},
 	-- Debugger

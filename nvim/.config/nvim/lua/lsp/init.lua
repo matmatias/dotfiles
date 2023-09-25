@@ -4,7 +4,7 @@ local function on_attach(_, __)
 	local wk = require("which-key")
 	-- Attached LSP keymappings
 	local keymaps = require("lsp.keymaps").lsp()
-	local prefix = { prefix = "<leader>L" }
+	local prefix = { prefix = "<leader>l" }
 	wk.register(keymaps, prefix)
 end
 
@@ -82,11 +82,17 @@ function lsp.setup()
 	require("mason-tool-installer").setup({
 		ensure_installed = formatters,
 	})
-	require("formatter").setup({
+
+	local formatter = require("formatter")
+	local clangdformat_default = require("formatter.defaults.clangformat")
+
+	formatter.setup({
 		filetype = {
 			lua = {
 				require("formatter.filetypes.lua").stylua,
 			},
+			c = clangdformat_default,
+			cpp = clangdformat_default,
 		},
 	})
 
@@ -114,9 +120,9 @@ function lsp.setup()
 	local dap = require("dap")
 	-- C/C++/Rust
 	dap.adapters.cpptools = {
-    id = "cpptools",
-    type = "executable",
-    command = "OpenDebugAD7",
+		id = "cpptools",
+		type = "executable",
+		command = "OpenDebugAD7",
 	}
 	-- For more dap installs, check https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
 

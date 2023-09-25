@@ -9,8 +9,13 @@ function keymaps.lsp()
 		s = { vim.lsp.buf.signature_help, "Display signature information" },
 		t = { vim.lsp.buf.type_definition, "Jump to type definition" },
 		r = { vim.lsp.buf.rename, "Rename" },
+    R = { "<cmd>LspRestart<cr>", "Restart"},
 		f = { vim.lsp.buf.formatting, "Format File" },
 		a = { vim.lsp.buf.code_action, "Code Action" },
+    -- Diagnostics
+		["<S-Tab>"] = { vim.diagnostic.goto_prev, "Move to prev diagnostic" },
+		["<Tab>"] = { vim.diagnostic.goto_next, "Move to next diagnostic" },
+    e = { vim.diagnostic.open_float, "Show Full Diagnostic"}
 	}
 
 	return _keymaps
