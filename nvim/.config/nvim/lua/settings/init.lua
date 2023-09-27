@@ -28,5 +28,4 @@ set.number = true
 set.cursorline = false
 set.hidden = true
 set.swapfile = false
-
--- set.colorscheme = "gruvbox-material"
+set.colorcolumn = "80"
