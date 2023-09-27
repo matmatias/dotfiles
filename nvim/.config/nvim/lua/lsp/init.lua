@@ -78,53 +78,9 @@ function lsp.setup()
 	})
 
 	-- Formatters setup
-	local formatters = require("lsp.formatters")
-	require("mason-tool-installer").setup({
-		ensure_installed = formatters,
-	})
-
-	local formatter = require("formatter")
-
-	local clangd_formatter = require("formatter.defaults.clangformat")
-	local eslintd_formatter = require("formatter.defaults.eslint_d")
-	local prettier_formater = require("formatter.defaults.prettier")
-
-	local function get_does_cfg_file_exists_in_cwd(cfg_file_pattern)
-		local cwd = vim.fn.getcwd()
-		local cwd_content_table =
-			vim.split(vim.fn.glob(cwd .. "/*") .. "\n" .. vim.fn.glob(cwd .. "/.[^.]*"), "\n", { trimempty = true })
-
-		for _, cwd_item in pairs(cwd_content_table) do
-			local does_config_file_exists = string.match(cwd_item, cfg_file_pattern)
-
-			if does_config_file_exists then
-				return true
-			end
-		end
-
-		return false
-	end
-
-	local does_config_file_exists = get_does_cfg_file_exists_in_cwd(".*eslint.*")
-	local jsts_formatter = prettier_formater
-
-	if does_config_file_exists then
-		jsts_formatter = eslintd_formatter
-	end
-
-	formatter.setup({
-		filetype = {
-			lua = {
-				require("formatter.filetypes.lua").stylua,
-			},
-			c = clangd_formatter,
-			cpp = clangd_formatter,
-			javascript = jsts_formatter,
-			typescript = jsts_formatter,
-			javascriptreact = jsts_formatter,
-			typescriptreact = jsts_formatter,
-		},
-	})
+  local formatter = require("formatter")
+  local formatters_setup = require("lsp.formatter.setup")
+  formatter.setup(formatters_setup)
 
 	-- Debuggers setup
 	local debuggers = require("lsp.debuggers")
