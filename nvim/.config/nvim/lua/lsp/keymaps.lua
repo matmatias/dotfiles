@@ -8,8 +8,9 @@ function keymaps.lsp()
 		i = { vim.lsp.buf.implementation, "List all implementations" },
 		s = { vim.lsp.buf.signature_help, "Display signature information" },
 		t = { vim.lsp.buf.type_definition, "Jump to type definition" },
-		r = { vim.lsp.buf.rename, "Rename" },
-    R = { "<cmd>LspRestart<cr>", "Restart"},
+		R = { vim.lsp.buf.rename, "Rename Symbol" },
+		r = { vim.lsp.buf.references, "List all references" },
+    Z = { "<cmd>LspRestart<cr>", "Restart"},
 		f = { vim.lsp.buf.formatting, "Format File" },
 		a = { vim.lsp.buf.code_action, "Code Action" },
     -- Diagnostics
