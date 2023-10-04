@@ -1,4 +1,5 @@
 require("mason").setup()
+local lspconfig = require("lspconfig")
 
 local function on_attach(_, __)
 	local wk = require("which-key")
@@ -9,7 +10,7 @@ local function on_attach(_, __)
 end
 
 local function default_handler(server_name, capabilities)
-	require("lspconfig")[server_name].setup({
+	lspconfig[server_name].setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
 	})
@@ -62,7 +63,6 @@ function lsp.setup()
 			default_handler(server_name, capabilities)
 		end,
 		["lua_ls"] = function()
-			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
@@ -75,12 +75,19 @@ function lsp.setup()
 				},
 			})
 		end,
+		["ltex"] = function()
+			lspconfig.ltex.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				filetypes = { "tex" },
+			})
+		end,
 	})
 
 	-- Formatters setup
-  local formatter = require("formatter")
-  local formatters_setup = require("lsp.formatter.setup")
-  formatter.setup(formatters_setup)
+	local formatter = require("formatter")
+	local formatters_setup = require("lsp.formatter.setup")
+	formatter.setup(formatters_setup)
 
 	-- Debuggers setup
 	local debuggers = require("lsp.debuggers")
