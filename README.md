@@ -35,8 +35,7 @@ docker build -t fresh_debian .
 ```
 Then use the new fresh debian to test the scripts:
 ```bash
-docker run -d --name fresh_debian -d fresh_debian
-docker exec -it fresh_debian /bin/bash
+docker run -d --name fresh_debian -d fresh_debian && docker exec -it fresh_debian /bin/bash
 ```
 
 To stop the container, run:
