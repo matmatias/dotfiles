@@ -53,6 +53,9 @@ BOB_PATH="$HOME/.asdf/installs/rust/stable/bin"
 "$BOB_PATH/bob" use stable
 echo "NVIM INSTALLED!"
 
+echo "SETTING NVIM AS GIT'S DEFAULT TEXT EDITOR"
+git config --global core.editor "nvim"
+
 directories=()
 
 while IFS= read -r -d '' dir; do
