@@ -148,9 +148,9 @@ require("lazy").setup({
 			-- Debuggers
 			"mfussenegger/nvim-dap",
 			"jay-babu/mason-nvim-dap.nvim",
-      -- Debugger UI
-      "rcarriga/nvim-dap-ui",
-      "folke/neodev.nvim",
+			-- Debugger UI
+			"rcarriga/nvim-dap-ui",
+			"folke/neodev.nvim",
 			-- Debugger cfg per project
 			"ldelossa/nvim-dap-projects",
 		},
