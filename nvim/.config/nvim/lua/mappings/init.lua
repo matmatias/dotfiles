@@ -18,6 +18,7 @@ wk.register({
 	r = { "<cmd>luafile %<cr>", "Reload File" },
 	h = { "<cmd>noh<cr>", "Remove search highlight" },
 	e = { "<cmd>NvimTreeToggle<cr>", "Open File Tree" },
+	m = { "<cmd>messages<cr>", "Check Messages" },
 	-- Non-Attached LSP keymappings
 	l = {
 		name = "+LSP Actions",
@@ -82,3 +83,46 @@ map("n", "<S-h>", "gT", opts) -- go to previous tab
 map("n", "<S-l>", "gt", opts) -- go to next tab
 
 map("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- togle file tree
+
+-- local function toggle_quickfix()
+-- 	local window_info = vim.fn.getwininfo()
+-- 	local is_quickfix_open = true
+--
+-- 	for _, win in ipairs(window_info) do
+--     print(_, win)
+--
+--     for index, value in ipairs(win) do
+--       print("CHEGOU")
+--     end
+--
+-- 		if win.quickfix == 1 then
+-- 			is_quickfix_open = true
+-- 			break
+-- 		end
+-- 	end
+--
+-- 	if is_quickfix_open then
+-- 		vim.cmd("cclose")
+-- 	else
+-- 		vim.cmd("copen")
+-- 	end
+-- end
+
+-- quickfix
+wk.register({
+	x = {
+		name = "+Quickfix List",
+		o = { "<cmd>copen<cr>", "Open" },
+		c = { "<cmd>cclose<cr>", "Close" },
+	},
+}, { prefix = "<leader>" })
+
+wk.register({
+  q = { "<cmd>:cnext<cr>", "Select Next Quickfix Item"},
+  Q = { "<cmd>:clast<cr>", "Select Last Quickfix Item"},
+}, { prefix = "["})
+
+wk.register({
+  q = { "<cmd>:cnext<cr>", "Select Previous Quickfix Item"},
+  Q = { "<cmd>:clast<cr>", "Select First Quickfix Item"},
+}, { prefix = "]"})
