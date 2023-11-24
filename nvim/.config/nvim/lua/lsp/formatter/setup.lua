@@ -16,7 +16,6 @@ local jsts_formatter = prettier_formater
 -- Python
 local python_formatter = require("formatter.filetypes.python").black
 
-
 local setup = {
 	filetype = {
 		lua = {
@@ -25,10 +24,11 @@ local setup = {
 		c = c_formatter,
 		cpp = c_formatter,
 		javascript = jsts_formatter,
-		typescript = jsts_formatter,
 		javascriptreact = jsts_formatter,
+		typescript = jsts_formatter,
 		typescriptreact = jsts_formatter,
-    python = python_formatter
+		html = prettier_formater,
+		python = python_formatter,
 	},
 }
 
