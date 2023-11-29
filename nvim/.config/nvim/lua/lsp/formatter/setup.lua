@@ -5,6 +5,8 @@ require("mason-tool-installer").setup({
 
 -- C
 local c_formatter = require("formatter.defaults.clangformat")
+-- Java
+local java_formatter = require("formatter.defaults.clangformat")
 -- JS/TS
 local eslintd_formatter = require("formatter.defaults.eslint_d")
 local prettier_formater = require("formatter.defaults.prettier")
@@ -23,6 +25,7 @@ local setup = {
 		},
 		c = c_formatter,
 		cpp = c_formatter,
+    java = java_formatter,
 		javascript = jsts_formatter,
 		javascriptreact = jsts_formatter,
 		typescript = jsts_formatter,
