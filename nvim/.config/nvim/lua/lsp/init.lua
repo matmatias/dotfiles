@@ -117,6 +117,54 @@ function lsp.setup()
 		type = "executable",
 		command = "OpenDebugAD7",
 	}
+	dap.configurations.c = {
+		{
+			type = "cpptools",
+			request = "launch",
+			name = "Launch file",
+			program = "${file}",
+			MIDebuggerPath = function()
+				return "gdb" -- path to debugger binary
+			end,
+		},
+	}
+
+	-- Python
+	dap.adapters.python = {
+		type = "executable",
+		command = os.getenv("HOME") .. "/.virtualenvs/tools/bin/python",
+		args = { "-m", "debugpy.adapter" },
+	}
+	dap.configurations.python = {
+		{
+			type = "python",
+			request = "launch",
+			name = "Launch file",
+			program = "${file}",
+			pythonPath = function()
+				local cwd = vim.fn.getcwd()
+
+				if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+					return cwd .. "/venv/bin/python"
+				elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+					return cwd .. "/.venv/bin/python"
+				elseif vim.fn.executable(cwd .. "/env/bin/python") == 1 then
+					return cwd .. "/env/bin/python"
+				elseif vim.fn.executable(cwd .. "/.env/bin/python") == 1 then
+					return cwd .. "/.env/bin/python"
+				end
+
+				local home_path = os.getenv("HOME")
+				local asdf_python_path = string.format("%s/.asdf/shims/python", home_path)
+
+				if vim.fn.executable(asdf_python_path) == 1 then
+					return asdf_python_path
+				end
+
+				return "/usr/bin/python3"
+			end,
+		},
+	}
 	-- For more dap installs, check https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
 
 	require("neodev").setup({
