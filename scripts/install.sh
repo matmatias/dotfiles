@@ -7,7 +7,7 @@ UPDATE_COMMAND="update"
 mv $HOME/.bashrc $HOME/.bashrc.bak
 echo "INSTALLING PACKAGES..."
 sudo $PACKAGE_MANAGER $UPDATE_COMMAND
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip gzip fontconfig dialog apt-utils build-essential stow cmake gdb
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip gzip fontconfig dialog apt-utils build-essential stow cmake gdb gconf2
 # Python dependencies
 sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 echo "PACKAGES INSTALLED!"
@@ -17,6 +17,9 @@ sudo wget -O /usr/share/fonts/cascadiacode.zip https://github.com/ryanoasis/nerd
 sudo mkdir /usr/share/fonts/cascadiacode && sudo unzip /usr/share/fonts/cascadiacode.zip -d /usr/share/fonts/cascadiacode
 fc-cache -f -v
 echo "FONT INSTALLED!"
+echo "SETTING CASKAYDIACOVE NERD FONT ON GNOME TERMINAL"
+gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "CaskaydiaCove Nerd Font"
+echo "CASKAYDIACOVE NERD FONT SET"
 
 echo "INSTALLING ASDF"
 git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.13.1
@@ -71,3 +74,5 @@ for dir in "${directories[@]}"; do
   stow "$dir"
 done
 echo "SYMLINKING DONE"
+echo "It's highly recommend to change the terminal to dark mode so the nvim colorscheme works properly"
+echo "It's also recommended to restart your system so everything is setup correctly"
