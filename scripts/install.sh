@@ -12,6 +12,10 @@ sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip
 sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 echo "PACKAGES INSTALLED!"
 
+echo "INSTALLING CHROMIUM"
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND chromium
+echo "CHROMIUM INSTALLED"
+
 echo "INSTALLING CASKAYDIACOVE NERD FONT"
 sudo wget -O /usr/share/fonts/cascadiacode.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.zip
 sudo mkdir /usr/share/fonts/cascadiacode && sudo unzip /usr/share/fonts/cascadiacode.zip -d /usr/share/fonts/cascadiacode
