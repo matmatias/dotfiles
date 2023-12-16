@@ -18,8 +18,17 @@ sudo mkdir /usr/share/fonts/cascadiacode && sudo unzip /usr/share/fonts/cascadia
 fc-cache -f -v
 echo "FONT INSTALLED!"
 echo "SETTING CASKAYDIACOVE NERD FONT ON GNOME TERMINAL"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "CaskaydiaCove Nerd Font"
+gsettings set org.gnome.Terminal.ProfilesList default "CaskaydiaCove Nerd Font Mono,CaskaydiaCove NFM:style=Regular"
 echo "CASKAYDIACOVE NERD FONT SET"
+
+echo "INSTALLING PAPIRUS ICON THEME"
+sudo sh -c "echo 'deb http://ppa.launchpad.net/papirus/papirus/ubuntu jammy main' > /etc/apt/sources.list.d/papirus-ppa.list"
+sudo wget -qO /etc/apt/trusted.gpg.d/papirus-ppa.asc 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9461999446FAF0DF770BFC9AE58A9D36647CAE7F'
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND papirus-icon-theme
+echo "PAPIRUS ICON THEME INSTALLED"
+echo "SETTING UP PAPIRUS ICON THEME AS DEFAULT"
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+echo "PAPIRUS ICON THEME SET"
 
 echo "INSTALLING ASDF"
 git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.13.1
