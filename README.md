@@ -5,7 +5,7 @@
   - .bashrc
   - asdf
   - nvim
-  - install.sh: this script installs and setup bash, cmake, gcc, gdb, asdf, rust, python, nodejs, bob (nvim version manager), nvim and all the dependencies needed to make everything work out of the box.
+  - install.sh: this script installs and setup bash, cmake, gcc, gdb, asdf, rust, python, nodejs, bob (nvim version manager), chromium, nvim and all the dependencies needed to make everything work out of the box.
 
 ## Setup
   To set everything up, run:
