@@ -11,6 +11,24 @@ sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip
 # Python dependencies
 sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 echo "PACKAGES INSTALLED!"
+# Docker Engine
+echo "INSTALLING DOCKER..."
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y ca-certificates gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg 
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo $PACKAGE_MANAGER $UPDATE_COMMAND
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+echo "DOCKER INSTALLED"
+echo "SETTING UP DOCKER"
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+echo "DOCKER SET"
 
 echo "INSTALLING CHROMIUM"
 sudo $PACKAGE_MANAGER $INSTALL_COMMAND chromium
