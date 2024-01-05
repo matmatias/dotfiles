@@ -8,6 +8,12 @@
   - install.sh: this script installs and setup bash, cmake, gcc, gdb, asdf, rust, python, nodejs, bob (nvim version manager), nvim, chromium, docker and all the dependencies needed to make everything work out of the box.
 
 ## Setup
+  If you are (or intend to be) a debian package maintainer/creator, then run:
+  ```bash
+  cp bash/.env.debian.example bash/.env.debian
+  ```
+  Now change the .env.debian file with your data. If you are not a debian package maintainer/creator, you can ignore the step above.
+
   To set everything up, run:
   ```bash
   git clone git@github.com:MatMatias/dotfiles $HOME/.dotfiles
@@ -36,6 +42,11 @@ docker build -t fresh_debian .
 Then use the new fresh debian to test the scripts:
 ```bash
 docker run -d --name fresh_debian -d fresh_debian && docker exec -it fresh_debian /bin/bash
+```
+
+Inside the container, to execute the install script, run:
+```bash
+cd .dotfiles && ./scripts/install.sh
 ```
 
 To stop the container, run:
