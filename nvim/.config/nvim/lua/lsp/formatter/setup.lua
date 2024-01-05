@@ -3,6 +3,8 @@ require("mason-tool-installer").setup({
 	ensure_installed = formatters,
 })
 
+-- Bash
+local bash_formatter = require("formatter.filetypes.sh").shfmt
 -- C
 local c_formatter = require("formatter.defaults.clangformat")
 -- Java
@@ -17,21 +19,25 @@ local jsts_formatter = prettier_formater
 -- end
 -- Python
 local python_formatter = require("formatter.filetypes.python").black
+-- SQL
+-- local sql_linter = require("formatter.filetypes.sql").sqlfluff
 
 local setup = {
 	filetype = {
 		lua = {
 			require("formatter.filetypes.lua").stylua,
 		},
+		sh = bash_formatter,
 		c = c_formatter,
 		cpp = c_formatter,
-    java = java_formatter,
+		java = java_formatter,
 		javascript = jsts_formatter,
 		javascriptreact = jsts_formatter,
 		typescript = jsts_formatter,
 		typescriptreact = jsts_formatter,
 		html = prettier_formater,
 		python = python_formatter,
+		-- sql = sql_linter,
 	},
 }
 
