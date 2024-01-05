@@ -7,31 +7,38 @@ UPDATE_COMMAND="update"
 mv $HOME/.bashrc $HOME/.bashrc.bak
 echo "INSTALLING PACKAGES..."
 sudo $PACKAGE_MANAGER $UPDATE_COMMAND
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip gzip fontconfig dialog apt-utils build-essential stow cmake gdb gconf2 fonts-noto
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip gzip fontconfig dialog apt-utils build-essential stow cmake gdb gconf2 fonts-noto # devscripts debhelper fakeroot file gnupg lintian quilt dh_make
+
 # Python dependencies
 sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 echo "PACKAGES INSTALLED!"
+
 # Docker Engine
-echo "INSTALLING DOCKER..."
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y ca-certificates gnupg
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg 
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo $PACKAGE_MANAGER $UPDATE_COMMAND
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-echo "DOCKER INSTALLED"
-echo "SETTING UP DOCKER"
-sudo groupadd docker
-sudo usermod -aG docker $USER
-newgrp docker
-echo "DOCKER SET"
+DOCKER_ENV_PATH=/.dockerenv
+if [ -f "$DOCKER_ENV_PATH" ]; then
+  echo "SCRIPT IS BEING EXECUTED IN A CONTAINER, DOCKER WON'T BE INSTALLED"
+else
+  echo "SCRIPT IS BEING EXECUTED IN A REAL MACHINE, INSTALLING DOCKER..."
+  sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y ca-certificates gnupg
+  sudo install -m 0755 -d /etc/apt/keyrings
+  curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  sudo chmod a+r /etc/apt/keyrings/docker.gpg 
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  sudo $PACKAGE_MANAGER $UPDATE_COMMAND
+  sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  echo "DOCKER INSTALLED"
+  echo "SETTING UP DOCKER"
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+  newgrp docker
+  echo "DOCKER SET"
+fi
 
 echo "INSTALLING CHROMIUM"
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND chromium
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y chromium
 echo "CHROMIUM INSTALLED"
 
 echo "INSTALLING CASKAYDIACOVE NERD FONT"
@@ -46,7 +53,7 @@ echo "CASKAYDIACOVE NERD FONT SET"
 echo "INSTALLING PAPIRUS ICON THEME"
 sudo sh -c "echo 'deb http://ppa.launchpad.net/papirus/papirus/ubuntu jammy main' > /etc/apt/sources.list.d/papirus-ppa.list"
 sudo wget -qO /etc/apt/trusted.gpg.d/papirus-ppa.asc 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9461999446FAF0DF770BFC9AE58A9D36647CAE7F'
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND papirus-icon-theme
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y papirus-icon-theme
 echo "PAPIRUS ICON THEME INSTALLED"
 echo "SETTING UP PAPIRUS ICON THEME AS DEFAULT"
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
@@ -102,8 +109,11 @@ done < <(find . -mindepth 1 -maxdepth 1 -type d -print0)
 
 echo "SYMLINKING DOTFILES"
 for dir in "${directories[@]}"; do
-  stow "$dir"
+  sudo stow "$dir"
 done
+
 echo "SYMLINKING DONE"
 echo "It's highly recommend to change the terminal to dark mode so the nvim colorscheme works properly"
 echo "It's also recommended to restart your system so everything is setup correctly"
+echo "If you're (or intend to be) a .deb package creator/maintainer, copy bash/.env.debian then change .env.debian's content with your data, then restart the terminal"
+echo "If you're not, ignore this."

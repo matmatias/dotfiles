@@ -127,3 +127,14 @@ export PATH=$PATH:$HOME/.asdf/installs/rust/stable/bin
 export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
 # Formatters / LSPs / Debuggers
 export PATH=$PATH:$HOME/.local/share/nvim/mason/bin
+
+# Export debian package maintainer variables
+ENV_DEBIAN_PATH=$HOME/.env.debian
+if [ -f "$ENV_DEBIAN_PATH" ]; then
+  source $HOME/.env.debian
+  export DEBEMAIL DEBFULLNAME
+fi
+
+# alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+# . /usr/share/bash-completion/completions/quilt
+# complete -F _quilt_completion -o filenames dquilt
