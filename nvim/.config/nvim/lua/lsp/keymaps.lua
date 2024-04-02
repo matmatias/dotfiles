@@ -10,13 +10,13 @@ function keymaps.lsp()
 		t = { vim.lsp.buf.type_definition, "Jump to type definition" },
 		R = { vim.lsp.buf.rename, "Rename Symbol" },
 		r = { vim.lsp.buf.references, "List all references" },
-    Z = { "<cmd>LspRestart<cr>", "Restart"},
+		Z = { "<cmd>LspRestart<cr>", "Restart" },
 		f = { vim.lsp.buf.formatting, "Format File" },
 		a = { vim.lsp.buf.code_action, "Code Action" },
-    -- Diagnostics
+		-- Diagnostics
 		["<S-Tab>"] = { vim.diagnostic.goto_prev, "Move to prev diagnostic" },
 		["<Tab>"] = { vim.diagnostic.goto_next, "Move to next diagnostic" },
-    e = { vim.diagnostic.open_float, "Show Full Diagnostic"}
+		e = { vim.diagnostic.open_float, "Show Full Diagnostic" },
 	}
 
 	return _keymaps

@@ -118,11 +118,11 @@ wk.register({
 }, { prefix = "<leader>" })
 
 wk.register({
-  q = { "<cmd>:cnext<cr>", "Select Next Quickfix Item"},
-  Q = { "<cmd>:clast<cr>", "Select Last Quickfix Item"},
-}, { prefix = "["})
+	q = { "<cmd>:cnext<cr>", "Select Next Quickfix Item" },
+	Q = { "<cmd>:clast<cr>", "Select Last Quickfix Item" },
+}, { prefix = "[" })
 
 wk.register({
-  q = { "<cmd>:cnext<cr>", "Select Previous Quickfix Item"},
-  Q = { "<cmd>:clast<cr>", "Select First Quickfix Item"},
-}, { prefix = "]"})
+	q = { "<cmd>:cnext<cr>", "Select Previous Quickfix Item" },
+	Q = { "<cmd>:clast<cr>", "Select First Quickfix Item" },
+}, { prefix = "]" })

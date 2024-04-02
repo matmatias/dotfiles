@@ -10,7 +10,7 @@ local servers = {
 	"eslint",
 	"html",
 	"jsonls",
-  "jdtls",
+	"jdtls",
 	"tsserver",
 	"ltex",
 	"lua_ls",
