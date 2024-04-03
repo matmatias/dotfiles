@@ -7,7 +7,7 @@ UPDATE_COMMAND="update"
 mv $HOME/.bashrc $HOME/.bashrc.bak
 echo "INSTALLING PACKAGES..."
 sudo $PACKAGE_MANAGER $UPDATE_COMMAND
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip gzip fontconfig dialog apt-utils build-essential stow cmake gdb gconf2 fonts-noto # devscripts debhelper fakeroot file gnupg lintian quilt dh_make
+sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y git curl xclip tmux ripgrep wget unzip gzip fontconfig dialog apt-utils build-essential stow cmake gdb fonts-noto # devscripts debhelper fakeroot file gnupg lintian quilt dh_make
 
 # Python dependencies
 sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
