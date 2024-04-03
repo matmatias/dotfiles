@@ -23,6 +23,17 @@
   ```
   Then restart your bash session.
 
+### WSL
+  If you're using WSL, run:
+  ```bash
+  ./scripts/wsl_install.sh
+  ```
+  Instead of
+  ```bash
+  ./scripts/install.sh
+  ```
+  The difference is that the wsl install script does not install chromium neither it tries to configure gnome
+
 ### Neovim
   To setup neovim, run:
   ```bash
