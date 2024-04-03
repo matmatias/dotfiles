@@ -37,27 +37,11 @@ else
   echo "DOCKER SET"
 fi
 
-echo "INSTALLING CHROMIUM"
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y chromium
-echo "CHROMIUM INSTALLED"
-
 echo "INSTALLING CASKAYDIACOVE NERD FONT"
 sudo wget -O /usr/share/fonts/cascadiacode.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.zip
 sudo mkdir /usr/share/fonts/cascadiacode && sudo unzip /usr/share/fonts/cascadiacode.zip -d /usr/share/fonts/cascadiacode
 fc-cache -f -v
 echo "FONT INSTALLED!"
-echo "SETTING CASKAYDIACOVE NERD FONT ON GNOME TERMINAL"
-gsettings set org.gnome.Terminal.ProfilesList default "CaskaydiaCove Nerd Font Mono,CaskaydiaCove NFM:style=Regular"
-echo "CASKAYDIACOVE NERD FONT SET"
-
-echo "INSTALLING PAPIRUS ICON THEME"
-sudo sh -c "echo 'deb http://ppa.launchpad.net/papirus/papirus/ubuntu jammy main' > /etc/apt/sources.list.d/papirus-ppa.list"
-sudo wget -qO /etc/apt/trusted.gpg.d/papirus-ppa.asc 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9461999446FAF0DF770BFC9AE58A9D36647CAE7F'
-sudo $PACKAGE_MANAGER $INSTALL_COMMAND -y papirus-icon-theme
-echo "PAPIRUS ICON THEME INSTALLED"
-echo "SETTING UP PAPIRUS ICON THEME AS DEFAULT"
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-echo "PAPIRUS ICON THEME SET"
 
 echo "INSTALLING ASDF"
 git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.13.1
