@@ -27,4 +27,19 @@ echo "NVIM INSTALLED!"
 echo "SETTING NVIM AS GIT'S DEFAULT TEXT EDITOR"
 git config --global core.editor "nvim"
 
+directories=()
+
+while IFS= read -r -d '' dir; do
+  dir_name=$(basename "$dir")
+
+  if [ "$dir_name" != "scripts" ] && [ "$dir_name" != ".git" ]; then
+    directories+=("$dir_name")
+  fi
+done < <(find . -mindepth 1 -maxdepth 1 -type d -print0)
+
+echo "SYMLINKING DOTFILES"
+for dir in "${directories[@]}"; do
+  sudo stow "$dir"
+done
+
 echo "INSTALLATION DONE, HAPPY HACKING"
